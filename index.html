@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEEZ</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/main.scss">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- jQuery -->
+    <script src="lib/jquery-3.7.1.min.js"></script>
+    <!-- Swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script>
+        $(function () {
+            // 메뉴 열기
+            $('.nav_btn').on('click', function () {
+                $('.nav_mobile').addClass('active');
+                $('.nav_btn').addClass('hidden'); // 클래스로 숨김 처리
+            });
+
+            // 메뉴 닫기
+            $('.close_btn').on('click', function () {
+                $('.nav_mobile').removeClass('active');
+                $('.nav_btn').removeClass('hidden'); // 다시 보여줌
+            });
+
+            // 아코디언 메뉴
+            $('.nav_mobile .depth-01').on('click', function (e) {
+                e.preventDefault();
+                const $this = $(this);
+                const $submenu = $this.next('.depth-02');
+
+                if ($submenu.is(':visible')) {
+                    $submenu.slideUp();
+                    $this.removeClass('active');
+                } else {
+                    $('.nav_mobile .depth-02').slideUp();
+                    $('.nav_mobile .depth-01').removeClass('active');
+                    $submenu.slideDown();
+                    $this.addClass('active');
+                }
+            });
+
+            // 탑 버튼
+            $('.top-btn').on('click', function () {
+                $('html, body').animate({ scrollTop: 0 }, 1000);
+            });
+
+            $(window).on('scroll', function () {
+                const scrollTop = $(window).scrollTop();
+                const footerTop = $('.footer').offset().top; 
+                const windowHeight = $(window).height(); 
+
+                if (scrollTop + windowHeight > footerTop) {
+                    // 푸터에 닿으면 숨김
+                    $('.scroll .button_wrap').fadeOut();
+                } else {
+                    // 푸터 밖이면 다시 표시
+                    $('.scroll .button_wrap').fadeIn();
+                }
+            });
+
+
+            // 메인 비주얼 슬라이더
+            const mainSwiper = new Swiper(".main-swiper", {
+                loop: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false
+                },
+                centeredSlides: true,
+                spaceBetween: 0
+            });
+
+            // 섹션 2 텍스트 슬라이드
+            const textSwiper = new Swiper(".textSwiper", {
+                direction: "vertical",
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                on: {
+                    slideChangeTransitionStart: function () {
+                        const section = this.el.closest('.section-02');
+                        if (!section) return;
+
+                        const left = section.querySelector('.left');
+                        const right = section.querySelector('.right');
+
+                        gsap.to(left, { x: -30, opacity: 0.6, duration: 0.4, ease: "power1.out" });
+                        gsap.to(right, { x: 30, opacity: 0.6, duration: 0.4, ease: "power1.out" });
+                    },
+                    slideChangeTransitionEnd: function () {
+                        const section = this.el.closest('.section-02');
+                        if (!section) return;
+
+                        const left = section.querySelector('.left');
+                        const right = section.querySelector('.right');
+
+                        gsap.to(left, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" });
+                        gsap.to(right, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" });
+                    }
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="inner">
+            <h1 class="logo">
+                <img src="img/logo-test.png" alt="">
+            </h1><!-- .logo end -->
+            <nav class="nav_pc pc">
+                <ul class="gnb">
+                    <li>
+                        <a href="#" class="depth-01">ABOUT</a>
+                        <ul class="depth-02">
+                            <li><a href="#">ABOUT NEEZ</a></li>
+                            <li><a href="#">CI</a></li>
+                            <li><a href="#">ESG</a></li>
+                            <li><a href="#">HISTORY</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">MATERIAL</a>
+                        <ul class="depth-02">
+                            <li><a href="#">Feeliv</a></li>
+                            <li><a href="#">Color Chart</a></li>
+                            <li><a href="#">친환경 내장재</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">PRODUCT</a>
+                        <ul class="depth-02">
+                            <li><a href="#">소파</a></li>
+                            <li><a href="#">테이블</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">REVIEW</a>
+                        <ul class="depth-02">
+                            <li><a href="#">Best 리뷰</a></li>
+                            <li><a href="#">포토 리뷰</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">STORE INFO</a>
+                        <ul class="depth-02">
+                            <li><a href="#">백화점</a></li>
+                            <li><a href="#">팝업 스토어</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">EVENT</a>
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">CS CENTER</a>
+                        <ul class="depth-02">
+                            <li><a href="#">공지사항</a></li>
+                            <li><a href="#">상품문의</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">A/S문의</a></li>
+                            <li><a href="#">개인결제창</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">CART(0)</a>
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">LOGIN</a>
+                    </li>
+                </ul><!-- .gnb end -->
+            </nav><!-- .nav_pc pc end -->
+
+            <button type="button" class="nav_btn mobile">
+                <img src="img/header-menu.png" alt="">
+            </button>
+
+            <nav class="nav_mobile mobile">
+                <div class="mobile-header">
+                    <h1 class="logo">
+                        <a href="#"><img src="img/logo-test.png" alt="NEEZ 로고"></a>
+                    </h1>
+                     <button class="close_btn">
+                        <img src="img/close-btn.png" alt="닫기 아이콘">
+                    </button>
+                </div>
+                <ul class="gnb">
+                    <li>
+                        <a href="#" class="depth-01">ABOUT</a>
+                        <ul class="depth-02">
+                            <li><a href="#">ABOUT NEEZ</a></li>
+                            <li><a href="#">CI</a></li>
+                            <li><a href="#">ESG</a></li>
+                            <li><a href="#">HISTORY</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">MATERIAL</a>
+                        <ul class="depth-02">
+                            <li><a href="#">Feeliv</a></li>
+                            <li><a href="#">Color Chart</a></li>
+                            <li><a href="#">친환경 내장재</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">PRODUCT</a>
+                        <ul class="depth-02">
+                            <li><a href="#">소파</a></li>
+                            <li><a href="#">테이블</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">REVIEW</a>
+                        <ul class="depth-02">
+                            <li><a href="#">Best 리뷰</a></li>
+                            <li><a href="#">포토 리뷰</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">STORE INFO</a>
+                        <ul class="depth-02">
+                            <li><a href="#">백화점</a></li>
+                            <li><a href="#">팝업 스토어</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">EVENT</a>
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">CS CENTER</a>
+                        <ul class="depth-02">
+                            <li><a href="#">공지사항</a></li>
+                            <li><a href="#">상품문의</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">A/S문의</a></li>
+                            <li><a href="#">개인결제창</a></li>
+                        </ul><!-- .depth-02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">CART(0)</a>
+                    </li>
+                    <li>
+                        <a href="#" class="depth-01">LOGIN</a>
+                    </li>
+                </ul><!-- .gnb end -->
+            </nav><!-- .nav_mobile mobile end -->
+
+
+
+        </div><!-- .inner end -->
+    </header><!-- .header end -->
+
+    <main class="main">
+        <div class="scroll">
+            <div class="button_wrap">
+                <button type="button" class="kakao-btn">
+                    <a href="#">
+                        <img src="img/icon-kakao.png" alt="kakao-btn">
+                    </a>
+                </button>
+                <button type="button" class="top-btn">
+                    <img src="img/icon-top.png" alt="top-btn">
+                </button>
+            </div><!-- .button_wrap end -->
+        </div><!-- .scroll end -->
+
+        <section class="main_visual">
+            <div class="swiper main-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide slide-01"></div>
+                    <div class="swiper-slide slide-02"></div>
+                    <div class="swiper-slide slide-03"></div>
+                    <div class="swiper-slide slide-04"></div>
+                </div>
+            </div>
+        </section><!-- .main_visual end -->
+
+        <section class="section section-01">
+            <div class="inner">
+                <div class="grid-box">
+                    <div class="image_box">
+                        <div class="image">
+                            <img src="img/main-product-bg.png" alt="">
+                        </div><!-- .image end -->
+                        <div class="text">
+                            <p>Provides Value Beyond the Product</p>
+                            <a href="#" class="more">
+                                <p class="info">
+                                    More Info
+                                </p><!-- .text end -->
+                            </a><!-- .more end -->
+                        </div><!-- .text end -->
+                    </div><!-- .image_box end -->
+
+                    <div class="item_wrap">
+                        <div class="item">
+                            <a href="#">
+                                <img src="img/thumb-7KCc7ZKI66mU7J24_65SU7JeQ7KaI_67Cw6rK9_308x212.jpg" alt="">
+                                <p>디에즈 모듈</p>
+                                <span class="cost">
+                                    10,600,000원
+                                </span>
+                                <div class="discounted">
+                                    8,480,000원
+                                    <span>20%</span>
+                                </div><!-- .discounted end -->
+                            </a>
+                        </div><!-- .item end -->
+
+                        <div class="item">
+                            <a href="#">
+                                <img src="img/thumb-7KCc7ZKI66mU7J24_7Lg66W067O047J24_308x212.png" alt="">
+                                <p>쿠르보 4인</p>
+                                <span class="cost">
+                                    4,900,000원
+                                </span>
+                                <div class="discounted">
+                                    3,920,000원
+                                    <span>20%</span>
+                                </div><!-- .discounted end -->
+                            </a>
+                        </div><!-- .item end -->
+
+                        <div class="item">
+                            <a href="#">
+                                <img src="img/thumb-7KCc7ZKI66mU7J24_7YyM66W067Kg_308x212.png" alt="">
+                                <p>파르베 4인</p>
+                                <span class="cost">
+                                    3,900,000원
+                                </span>
+                                <div class="discounted">
+                                    3,120,000원
+                                    <span>20%</span>
+                                </div><!-- .discounted end -->
+                            </a>
+                        </div><!-- .item end -->
+
+                        <div class="item">
+                            <a href="#">
+                                <img src="img/thumb-7KCc7ZKI66mU7J24_66as7Yag7Iqk_308x212.jpg" alt="">
+                                <p>리토스 카우치</p>
+                                <span class="cost">
+                                    6,400,000원
+                                </span>
+                                <div class="discounted">
+                                    5,120,000원
+                                    <span>20%</span>
+                                </div><!-- .discounted end -->
+                            </a>
+                        </div><!-- .item end -->
+
+                        <div class="item">
+                            <a href="#">
+                                <img src="img/thumb-7KCc7ZKI66mU7J24_66as64uI7JeQ47J24_308x212.jpg" alt="">
+                                <p>리니에 4인</p>
+                                <span class="cost">
+                                    5,900,000원
+                                </span>
+                                <div class="discounted">
+                                    4,720,000원
+                                    <span>20%</span>
+                                </div><!-- .discounted end -->
+                            </a>
+                        </div><!-- .item end -->
+
+                        <div class="item">
+                            <a href="#">
+                                <img src="img/thumb-7KCc7ZKI66mU7J24_7Iuc7JeQ7YWM_308x212.jpg" alt="">
+                                <p>시에테 4인</p>
+                                <span class="cost">
+                                    6,200,000원
+                                </span>
+                                <div class="discounted">
+                                    4,960,000원
+                                    <span>20%</span>
+                                </div><!-- .discounted end -->
+                            </a>
+                        </div><!-- .item end -->
+                    </div><!-- .item_wrap end -->
+                </div><!-- .grid-box end -->
+            </div><!-- .inner end -->
+        </section><!-- .section-01 end -->
+
+        <section class="section section-02">
+            <div class="inner">
+                <div class="flex_box">
+                    <div class="animate">
+                        <div class="left col">
+                            <img src="img/main-standard-img1.png" alt="">
+                        </div>
+                        <div class="rolling col swiper textSwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"></div>
+                                <div class="swiper-slide"><img src="img/main-standard-img3.png" alt="단어1"></div>
+                                <div class="swiper-slide"><img src="img/main-standard-img4.png" alt="단어2"></div>
+                                <div class="swiper-slide"><img src="img/main-standard-img5.png" alt="단어3"></div>
+                            </div><!-- swiper-wrapper -->
+                        </div><!-- .rolling end -->
+
+                        <div class="right col">
+                            <img src="img/main-standard-img2.png" alt="">
+                        </div>
+                    </div><!-- .animate end -->
+
+                    <p class="text">
+                        공간 속 새로운 needs의 기준 <br>
+                        프리미엄 소파브랜드, 니즈
+                    </p><!-- .text end -->
+
+                    <a href="#" class="more">
+                        <span class="info">
+                            More Info
+                        </span><!-- .info end -->
+                    </a><!-- .more end -->
+                </div><!-- .flex_box end -->
+            </div><!-- .inner end -->
+        </section><!-- .section-02 end -->
+
+        <section class="section section-03">
+            <div class="inner">
+                <p class="text">
+                    국내 최초 SK Huvis 개발 친환경 신소재
+                </p><!-- .text end -->
+                <h3 class="title">FEELIV</h3>
+                <a href="#" class="more">
+                    <p class="info">
+                        More Info
+                    </p><!-- .info end -->
+                </a><!-- .moer end -->
+            </div><!-- .inner end -->
+        </section><!-- .section-03 end -->
+
+        <section class="section section-04">
+            <div class="inner">
+                <div class="text_box">
+                    <p class="text">
+                        전국에 위치한 <br>
+                        니즈 플래그십 스토어, 백화점, 팝업스토어에서 <br>
+                        니즈소파만의 특별함을 경험해 보세요.
+                    </p>
+                    <div class="flex_box">
+                        <p class="title">
+                            Store
+                        </p><!-- .title end -->
+                        <a href="#" class="more">
+                            <p class="info">
+                                More Info
+                            </p><!-- .info end -->
+                        </a><!-- .more end -->
+                    </div><!-- .flex_box end -->
+                </div><!-- .text_box end -->
+
+
+                <div class="image_box">
+                    <img src="img/main-store-bg.jpg" alt="">
+                </div><!-- .image box end -->
+            </div><!-- .inner end -->
+        </section><!-- .section-04 end -->
+    </main>
+
+    <footer class="footer">
+        <div class="inner">
+            <div class="flex_box">
+                <div class="left">
+                    <div class="logo">
+                        <img src="img/footer-logo.png" alt="">
+                    </div><!-- .logo end -->
+                    <div class="footer-info">
+                        <ul>
+                            <li>상호: (주)피앤엘</li>
+                            <li>대표: 이경수</li>
+                            <li>사업자등록번호: 177-88-00399</li>
+                            <li>통신판매업신고번호: 2017-고양일산동-1380</li>
+                            <li>주소: 경기도 고양시 일산동구 감내길 51</li>
+                            <li>이메일:
+                                <a href="mailto">neez@pnltrading.co.kr</a>
+                            </li>
+                        </ul>
+                    </div><!-- .footer-info end -->
+                    <div class="footer-info">
+                        <ul>
+                            <li>고객센터: 1588-5083</li>
+                            <li>상담시간: 10:00~17:00 (월~금 / 공휴일 제외)</li>
+                        </ul>
+                    </div><!-- .footer-info end -->
+                    <div class="footer-copyright">
+                        © (주)피앤엘 ALL RIGHTS RESERVED.
+                    </div><!-- .footer-copyright end -->
+                </div><!-- .left end -->
+
+                <div class="right">
+                    <nav class="sitemap">
+                        <ul>
+                            <li><a href="#">ABOUT</a></li>
+                            <li><a href="#">MATERIAL</a></li>
+                            <li><a href="#">PRODUCT</a></li>
+                            <li><a href="#">REVIEW</a></li>
+                            <li><a href="#">STORE INFO</a></li>
+                            <li><a href="#">EVENT</a></li>
+                            <li><a href="#">CS CENTER</a></li>
+                        </ul>
+                    </nav><!-- .sitemap end -->
+                </div><!-- .rigth end -->
+            </div><!-- .flex_box end -->
+        </div><!-- .inner end -->
+    </footer><!-- .footer end -->
+</body>
+
+</html>
