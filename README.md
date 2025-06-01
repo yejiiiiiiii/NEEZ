@@ -21,7 +21,7 @@
 ---
 
 ### 🧱 2. HTML 리뷰
-```html
+html
 <header class="header">
   <a href="index.html" class="header__logo">
     <img src="images/niez-logo.svg" alt="NEEZ 로고">
@@ -81,7 +81,7 @@
 ---
 
 ### 🎨 3. CSS 리뷰
-```/* _variables.scss */
+/* _variables.scss */
 $primary-color: #156bd8;
 $secondary-color: #ff689b;
 $text-color-dark: #333;
@@ -260,7 +260,7 @@ $gap-large: 2rem;
 ---
 
 ### ⚙️ 4. JavaScript 리뷰
-```javascript
+javascript
 // main.js
 
 // DOM 요소 캐싱
