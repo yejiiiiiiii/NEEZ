@@ -21,7 +21,7 @@
 ---
 
 ### 🧱 2. HTML 리뷰
-html
+`html
 <header class="header">
   <a href="index.html" class="header__logo">
     <img src="images/niez-logo.svg" alt="NEEZ 로고">
@@ -64,7 +64,7 @@ html
     <p>(주)피앤엘 | 고객센터 1234-5678 | 부산광역시 수영구 ...</p>
     <p>© 2025 NEEZ. All rights reserved.</p>
   </div>
-</footer>
+</footer>`
 
 - [ ]  의미론적 태그 사용 강화
 - <section>마다 id와 role="region", aria-labelledby 속성 추가 고려
@@ -81,6 +81,7 @@ html
 ---
 
 ### 🎨 3. CSS 리뷰
+` css (scss)
 /* _variables.scss */
 $primary-color: #156bd8;
 $secondary-color: #ff689b;
@@ -247,7 +248,7 @@ $gap-large: 2rem;
   html {
     font-size: 80%;
   }
-}
+}`
 
 - [x] SCSS 모듈화 및 파일 분리: 역할별로 _variables.scss, _mixins.scss, _header.scss, _navbar.scss, _section01.scss, _responsiveness.scss
 - [x] BEM 네이밍 일관성: .header__logo, .navbar__link, .section01__item-wrap, .section01__item-name 등
@@ -260,7 +261,7 @@ $gap-large: 2rem;
 ---
 
 ### ⚙️ 4. JavaScript 리뷰
-javascript
+`javascript
 // main.js
 
 // DOM 요소 캐싱
@@ -340,7 +341,7 @@ function toggleTopBtn() {
 // 상단 이동 버튼 클릭 시 부드러운 스크롤
 topBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+});`
 
 - [x] DOM 요소를 한 번만 탐색해 변수에 저장 → 중복 탐색 최소화
 - [x] 의미 있는 함수명 사용: toggleMobileMenu(), resizeLogoOnScroll(), highlightCurrentMenu(), toggleTopBtn()
