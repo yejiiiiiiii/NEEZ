@@ -21,7 +21,7 @@
 ---
 
 ### 🧱 2. HTML 리뷰
-`html
+```html
 <header class="header">
   <a href="index.html" class="header__logo">
     <img src="images/niez-logo.svg" alt="NEEZ 로고">
@@ -64,7 +64,7 @@
     <p>(주)피앤엘 | 고객센터 1234-5678 | 부산광역시 수영구 ...</p>
     <p>© 2025 NEEZ. All rights reserved.</p>
   </div>
-</footer>`
+</footer>```
 
 - [ ]  의미론적 태그 사용 강화
 - <section>마다 id와 role="region", aria-labelledby 속성 추가 고려
