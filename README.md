@@ -21,7 +21,7 @@
 ---
 
 ### 🧱 2. HTML 리뷰
-```html
+    html
 <header class="header">
   <a href="index.html" class="header__logo">
     <img src="images/niez-logo.svg" alt="NEEZ 로고">
@@ -64,7 +64,7 @@
     <p>(주)피앤엘 | 고객센터 1234-5678 | 부산광역시 수영구 ...</p>
     <p>© 2025 NEEZ. All rights reserved.</p>
   </div>
-</footer>```
+</footer>
 
 - [ ]  의미론적 태그 사용 강화
 - <section>마다 id와 role="region", aria-labelledby 속성 추가 고려
@@ -81,7 +81,7 @@
 ---
 
 ### 🎨 3. CSS 리뷰
-``` css (scss)
+    css (scss)
 /* _variables.scss */
 $primary-color: #156bd8;
 $secondary-color: #ff689b;
@@ -261,7 +261,7 @@ $gap-large: 2rem;
 ---
 
 ### ⚙️ 4. JavaScript 리뷰
-`javascript
+```javascript
 // main.js
 
 // DOM 요소 캐싱
